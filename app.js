@@ -5,6 +5,10 @@ const dbConnect=require('./config/mongo')
 const app = express()
 
 app.use(cors());
+app.use(express.json()); // recibimos los json por post
+app.use(express.static('storage')); // le digo que todos los RR guardados en storage sean publicos
+
+
 const port = process.env.PORT || 3000
 /**
  * aqui invoco a las rutas
