@@ -41,5 +41,16 @@ const validatorCreateItem = [
     
 ];
 
+const validatorGetItem = [
 
-module.exports = { validatorCreateItem };
+    check('id')
+    .exists()
+    .notEmpty()   
+    .isMongoId(),
+    (req, res, next) => {
+        return validateResults(req, res, next)
+    }
+    
+];
+
+module.exports = { validatorCreateItem, validatorGetItem };
