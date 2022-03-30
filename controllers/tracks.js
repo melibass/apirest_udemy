@@ -85,7 +85,7 @@ const deleteItem = async (req, res) =>{
     try{
         req = matchedData(req);
         const {id} = req;
-        const data = await tracksModel.deleteOne({_id:id}); //espera a que retorne algo con el await
+        const data = await tracksModel.delete({_id:id}); //espera a que retorne algo con el await
 
         res.send({data})
     } catch(e){

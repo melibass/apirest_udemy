@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongooseDelete=require('mongoose-delete') // importo mongoose delete
 
 //declarar esquema
 const UserScheme = new mongoose.Schema(
@@ -15,7 +16,8 @@ const UserScheme = new mongoose.Schema(
             unique:true
         },
         password:{
-            type:String
+            type:String,
+            select:false // pra que no se devuelva el dato ni siquiera hasheado
         },
         role:{
             type:['user', 'admin'],
@@ -29,5 +31,7 @@ const UserScheme = new mongoose.Schema(
         versionKey: false
     }
 );
+
+UserScheme.plugin(mongooseDelete, { overrideMethods: "all"}) // implemento mongoose delete  + para sobreescribir metodos nativos de mongoose
 
 module.exports = mongoose.model("users", UserScheme) //nombre de la table y nombre del modelo

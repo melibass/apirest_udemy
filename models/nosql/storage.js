@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const mongooseDelete=require('mongoose-delete') // importo mongoose delete
 //declarar esquema
 const StorageScheme = new mongoose.Schema(
     {
@@ -19,4 +19,5 @@ const StorageScheme = new mongoose.Schema(
     }
 );
 
+StorageScheme.plugin(mongooseDelete, { overrideMethods: "all"}) // implemento mongoose delete  + para sobreescribir metodos nativos de mongoose
 module.exports = mongoose.model("storage", StorageScheme) //nombre de la table y nombre del modelo

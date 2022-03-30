@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongooseDelete=require('mongoose-delete') // importo mongoose delete
 
 //declarar esquema
 const TracksScheme = new mongoose.Schema(
@@ -49,5 +50,7 @@ const TracksScheme = new mongoose.Schema(
         versionKey: false
     }
 );
+
+TracksScheme.plugin(mongooseDelete, { overrideMethods: "all"}) // implemento mongoose delete  + para sobreescribir metodos nativos de mongoose
 
 module.exports = mongoose.model("tracks", TracksScheme) //nombre de la table y nombre del modelo
