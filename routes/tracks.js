@@ -1,6 +1,7 @@
 const express=require('express');
 const router = express.Router();
-const customHeader = require('../middlewares/customHeader')
+const authMiddleware = require('../middlewares/session');
+const checkRol = require('../middlewares/rol')
 const { validatorCreateItem, validatorGetItem } = require('../validators/tracks');
 const { getItems, getItem, createItem, updateItem, deleteItem} = require('../controllers/tracks');
 
@@ -9,23 +10,27 @@ const { getItems, getItem, createItem, updateItem, deleteItem} = require('../con
 /**
  * Listar items
  */
-router.get('/',  getItems);
+router.get('/',authMiddleware, getItems);
 /**
  * obtener detalle de item
  */
- router.get('/:id', validatorGetItem,  getItem);
+ router.get('/:id',authMiddleware, validatorGetItem,  getItem);
 /**
  * Crear items
  */
-router.post('/', validatorCreateItem, createItem);
+router.post('/',
+    authMiddleware,
+    checkRol(["admin"]), // va despues del otro, porqu una vez q checkea lapersona, se fija si es admin
+    validatorCreateItem, 
+    createItem);
 /**
  * Actualizar un item
  */
- router.put('/:id', validatorGetItem, validatorCreateItem, updateItem);
+ router.put('/:id',authMiddleware, validatorGetItem, validatorCreateItem, updateItem);
 /**
  * Elimina un item
  */ 
- router.delete('/:id', validatorGetItem, deleteItem);
+ router.delete('/:id',authMiddleware, validatorGetItem, deleteItem);
  
 
 
