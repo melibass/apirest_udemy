@@ -20,7 +20,7 @@ router.get('/',authMiddleware, getItems);
  */
 router.post('/',
     authMiddleware,
-    checkRol(["admin"]), // va despues del otro, porqu una vez q checkea lapersona, se fija si es admin
+    checkRol(["user","admin"]), // va despues del otro, porqu una vez q checkea lapersona, se fija si es admin
     validatorCreateItem, 
     createItem);
 /**

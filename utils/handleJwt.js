@@ -1,10 +1,14 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = process.env.JWT_SECRET
+const JWT_SECRET = process.env.JWT_SECRET;
+const getProperties= require('../utils/handlePropertiesEngine');
+const propertiesKey = getProperties();
+
 //firma token x backend, se le pasa el objeto de usuario - con sus datos
 const tokenSign = async(user) => { 
     const sign = jwt.sign(
+        //ala funcion le da igual el motor de DB, entonces lo q hacemos es checkear cual id viene, y usarla para el JWT
         {
-            _id: user._id,
+            [propertiesKey.id]: user[propertiesKey.id],
             role: user.role
         },
         

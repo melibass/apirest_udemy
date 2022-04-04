@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');// declaro el paquete de mongoose
 
 // declaro funcion de conFig DB
-const dbConnect = () => {
+const dbConnectNoSql = () => {
     const DB_URI = process.env.DB_URI;
     mongoose.connect(DB_URI, { 
         useNewUrlParser: true,
@@ -17,4 +17,4 @@ const dbConnect = () => {
 }
 
 
-module.exports = dbConnect;
+module.exports = dbConnectNoSql;
