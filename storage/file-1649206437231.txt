@@ -1,0 +1,691 @@
+paths:
+  /characters:
+    get:
+      tags:
+      - Personajes
+      summary: Muestro todos los personajes de la base de datos
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/characters'
+        required: true
+      responses:
+        200:
+          description: (OK) Toda la info se muestra correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdCharacterOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+  /characters/create:
+    post:
+      tags:
+      - Personajes
+      summary: Crea un nuevo personaje en la base de datos
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/characters'
+        required: true
+      responses:
+        200:
+          description: (OK) La info del personaje se guardo correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdCharacterOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+    
+  /characters/{idCharacter}:
+     get:
+      tags:
+      - Personajes
+      summary: Detalle de un personaje en particular
+      parameters:
+      - name: idCharacter
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/characters'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+  /edit/{idCharacter}:
+    put:
+      tags:
+      - Personajes
+      summary: Actualiza la informacion de un personaje en la base de datos.
+      parameters:
+      - name: idCharacter
+        in: path
+        description: Identificador del cliente a obtener
+        required: true
+        schema:
+          type: string
+          
+      requestBody:
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/characters'
+        
+      responses:
+        200:
+          description: (OK) La informaciÃ³n del cliente se actualizÃ³ correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdCharacterOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+  /delete/{idCharacter}:
+    delete:
+      tags:
+        - Personajes
+      summary: Elimina definitivamente un personaje.
+      parameters:
+      - name: idCliente
+        in: path
+        description: Identificador del cliente a obtener
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: (OK) El cliente se eliminÃ³ correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdCharacterOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+  /movies/create:
+    post:
+      tags:
+      - Peliculas
+      summary: Crea un nuevo personaje en la base de datos
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/movies'
+        required: true
+      responses:
+        200:
+          description: (OK) La info de la pelicula se guardo correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdMovieOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+  /movies:
+    get:
+      tags:
+      - Peliculas
+      summary: Lista todas las peliculas
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/movies'
+        required: true
+      responses:
+        200:
+          description: (OK) La info se muestra correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdMovieOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+  /movies/{idMovie}:
+    get:
+      tags:
+      - Peliculas
+      summary: Muestra una pelicula en particular
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/movies'
+        required: true
+      responses:
+        200:
+          description: (OK) La info de la pelicula se muestra correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdMovieOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+  /movies/edit/{idMovie}:
+    put:
+      tags:
+      - Peliculas
+      summary: Edita la informacion de una pelicula en particular
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/movies'
+        required: true
+      responses:
+        200:
+          description: (OK) La info se edito correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdMovieOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+  /movies/delete/{idMovie}:
+    delete:
+      tags:
+      - Peliculas
+      summary: Elimina una pelicula en particular
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/movies'
+        required: true
+      responses:
+        200:
+          description: (OK) La info se elimino correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdMovieOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    
+    Unauthorized:
+      description: (Unauthorized) No hay autorizacion para llamar al servicio
+    
+    NotFound:
+      description: (NotFound) No se encontro la informacion
+    
+    BadRequest:
+      description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+      
+    ServerError:
+      description: Error en servidor
+        
+
+  parameters:
+    token:
+      in: header
+      name: token
+      description: Token de autenticacion en API.
+      required: true
+      schema:
+        type: string
+    
+
+  schemas:
+    characters:
+      type: object
+      properties: 
+       name_char:
+openapi: 3.0.1
+info:
+  title: API de Disney para Challenge de Node.js de Alkemy
+  description: Esta API se ancarga de manejar la informacion de la base de datos creada para el challenge
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+
+
+paths:
+  /characters:
+    get:
+      tags:
+      - Personajes
+      summary: Muestro todos los personajes de la base de datos
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/characters'
+        required: true
+      responses:
+        200:
+          description: (OK) Toda la info se muestra correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdCharacterOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+  /characters/create:
+    post:
+      tags:
+      - Personajes
+      summary: Crea un nuevo personaje en la base de datos
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/characters'
+        required: true
+      responses:
+        200:
+          description: (OK) La info del personaje se guardo correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdCharacterOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+    
+  /characters/{idCharacter}:
+     get:
+      tags:
+      - Personajes
+      summary: Detalle de un personaje en particular
+      parameters:
+      - name: idCharacter
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/characters'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+  /edit/{idCharacter}:
+    put:
+      tags:
+      - Personajes
+      summary: Actualiza la informacion de un personaje en la base de datos.
+      parameters:
+      - name: idCharacter
+        in: path
+        description: Identificador del cliente a obtener
+        required: true
+        schema:
+          type: string
+          
+      requestBody:
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/characters'
+        
+      responses:
+        200:
+          description: (OK) La informaciÃ³n del cliente se actualizÃ³ correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdCharacterOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+  /delete/{idCharacter}:
+    delete:
+      tags:
+        - Personajes
+      summary: Elimina definitivamente un personaje.
+      parameters:
+      - name: idCliente
+        in: path
+        description: Identificador del cliente a obtener
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: (OK) El cliente se eliminÃ³ correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdCharacterOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+  /movies/create:
+    post:
+      tags:
+      - Peliculas
+      summary: Crea un nuevo personaje en la base de datos
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/movies'
+        required: true
+      responses:
+        200:
+          description: (OK) La info de la pelicula se guardo correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdMovieOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+  /movies:
+    get:
+      tags:
+      - Peliculas
+      summary: Lista todas las peliculas
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/movies'
+        required: true
+      responses:
+        200:
+          description: (OK) La info se muestra correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdMovieOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+  /movies/{idMovie}:
+    get:
+      tags:
+      - Peliculas
+      summary: Muestra una pelicula en particular
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/movies'
+        required: true
+      responses:
+        200:
+          description: (OK) La info de la pelicula se muestra correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdMovieOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+  /movies/edit/{idMovie}:
+    put:
+      tags:
+      - Peliculas
+      summary: Edita la informacion de una pelicula en particular
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/movies'
+        required: true
+      responses:
+        200:
+          description: (OK) La info se edito correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdMovieOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+  /movies/delete/{idMovie}:
+    delete:
+      tags:
+      - Peliculas
+      summary: Elimina una pelicula en particular
+     
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/movies'
+        required: true
+      responses:
+        200:
+          description: (OK) La info se elimino correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createdMovieOk'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized' 
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    
+    Unauthorized:
+      description: (Unauthorized) No hay autorizacion para llamar al servicio
+    
+    NotFound:
+      description: (NotFound) No se encontro la informacion
+    
+    BadRequest:
+      description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+      
+    ServerError:
+      description: Error en servidor
+        
+
+  parameters:
+    token:
+      in: header
+      name: token
+      description: Token de autenticacion en API.
+      required: true
+      schema:
+        type: string
+    
+
+  schemas:
+    characters:
+      type: object
+      properties: 
+       name_char:
+        type: string
+        description: nombre del personaje
+       age:
+        type: integer
+        description: edad del personaje
+       weight:
+        type: integer
+        description: peso del personaje en kg
+       history:
+        type: string
+        description: historia del personaje
+       img_char:
+        type: string
+        description: archivo de imagen del personaje.
+  
+    createdCharacterOk:
+      type: object
+      properties:
+        response:
+          type: integer
+          enum: [1]
+          description: Bandera que nos dice si la llamada al servicio fue satisfactoria
+        idCharacter: 
+          type: integer
+          enum: [233]
+          description: Id correspondiente al personaje
+    
+    movies:
+      type: object
+      properties:
+       title:
+        type: string
+        description: Titulo de la pelicula
+       img_mov:
+        type: string
+        description: Imagen de poster de la pelicula
+       release_date:
+        type: integer
+        description: Fecha de estreno de la pelicula
+       genre_id:
+        type: integer
+        description: id correspondiente al Genero de la pelicula
+        
+    createdMovieOk:
+      type: object
+      properties:
+        response:
+          type: integer
+          enum: [1]
+          description: Bandera que nos dice si la llamada al servicio fue satisfactoria
+        idMovie: 
+          type: integer
+          enum: [233]
+          description: Id correspondiente a la pelicula
+          
+  

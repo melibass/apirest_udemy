@@ -12,7 +12,7 @@ const { handleHttpError } = require('../utils/handleError');
 const getItems = async (req, res) =>{
     try{
         const user = req.user; // envio la info de user q hace la peticion
-        const data = await tracksModel.find({}); //espera a que retorne algo con el await
+        const data = await tracksModel.findAllData({}); //espera a que retorne algo con el await
 
         res.send({data, user}) //devuelvo tanto la data q busco y que usuario la busca.
     }catch(e){

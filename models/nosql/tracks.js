@@ -50,6 +50,20 @@ const TracksScheme = new mongoose.Schema(
         versionKey: false
     }
 );
+/** Implementar metodo propio con relacion a storage */
+TracksScheme.statics.findAllData = function() {
+    const joinData= this.aggregate([
+        {
+            $lookup: {
+                from: "storages", // relaciono tracks y storage
+                localField: "mediaId", // a traves de tracks.mediaId
+                foreingField: "_id", //con storages._id media_id = _id
+                as: "audio", // el alias 
+            }
+        }
+    ]) 
+    return joinData;
+}
 
 TracksScheme.plugin(mongooseDelete, { overrideMethods: "all"}) // implemento mongoose delete  + para sobreescribir metodos nativos de mongoose
 

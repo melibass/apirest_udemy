@@ -53,6 +53,7 @@ const createItem = async (req, res) =>{
     const data = await storageModel.create(fileData)
     res.send({ data })
     }catch(e){
+        console.log(e)
         handleHttpError(res, "Error_upload_file")   
     }
 };

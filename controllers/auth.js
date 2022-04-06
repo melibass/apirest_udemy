@@ -30,7 +30,7 @@ const register = async (req, res) =>{
 const login = async (req,res)=>{
     try{
         req = matchedData(req);
-        const user = await usersModel.findOne({email: req.email}).select('password name email role');
+        const user = await usersModel.findOne({where:{email:req.email}});//.select('password name email role');
         if(!user){
             handleHttpError(res, "User doesn't exists", 404);
             return
